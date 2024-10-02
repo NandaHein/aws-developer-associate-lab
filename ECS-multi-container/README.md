@@ -20,4 +20,5 @@ docker run -dit --link my-postgres:db --name my-python-app  -p 8001:8000 my-pyth
 
 # Important to know
 
-**Make sure to change db host ip address in app.py and build the python app after you successfully deployed db container in ECS**
+- *__Make sure to change `db host ip address` in `app.py` and build the python app after you successfully deployed db container in ECS__*
+- *__You can run multiple containers in one task definition file in ECS changing db host to `localhost` address in `app.py`__*
