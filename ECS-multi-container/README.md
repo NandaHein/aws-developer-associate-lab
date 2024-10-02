@@ -13,13 +13,11 @@
 ```md
 docker run --name my-postgres -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=mydb -p 5432:5432 -d postgres
 
-docker run -it --name my-python-app --link my-postgres:db -p 8000:8000 -v "$PWD":/usr/src/app -w /usr/src/app python:3.9-slim bash
+docker build -t my-python-app .
 
-&nbsp;pip install --upgrade pip
-
-pip install psycopg2-binary flask
-
-python3 app.py
-
-docker rm $(docker ps -a -q) (remove the process docker)
+docker run -dit --link my-postgres:db --name my-python-app  -p 8001:8000 my-python-app
 ```
+
+# Important to know
+
+**Make sure to change db host ip address in app.py and build the python app after you successfully deployed db container in ECS**
